@@ -161,7 +161,7 @@ export default function Navbar() {
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
-                      src="vky.png"
+                      src="prf.jpg"
                       alt="Dan_Abromov" />
                   </a>
                 </div>
