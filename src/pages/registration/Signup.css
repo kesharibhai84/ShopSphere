@@ -1,0 +1,7 @@
+.transparent-blur-bg {
+    background-color: rgba(167, 185, 185, 0.8); /* Adjust the alpha value for transparency */
+    backdrop-filter: blur(0.1rem); /* Adjust the blur amount as needed */
+    padding: 2.5rem; /* px-10 */
+    border-radius: 0.75rem; /* rounded-xl */
+}
+

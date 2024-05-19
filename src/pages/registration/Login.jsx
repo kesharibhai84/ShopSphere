@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Loader from '../../components/loader/loader';
 import { auth } from '../../firebase/FirebaseConfig';
-
+import './Signup.css';
 function Login() {
 
     const [email, setEmail] = useState('');
@@ -16,7 +16,7 @@ function Login() {
 
     const navigate=useNavigate();
     const signin = async () => {
-    //   setLoading(true);
+      setLoading(true);
       try {
         const result = await signInWithEmailAndPassword(auth, email, password)
         localStorage.setItem('user',JSON.stringify(result));
@@ -48,10 +48,21 @@ function Login() {
       }
     }
    
+    const pageStyle = {
+        backgroundImage: 'url(/bg2.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    };
+
     return (
-        <div className=' flex justify-center items-center h-screen'>
+        <div className=' flex justify-center items-center h-screen' style={pageStyle}>
             {loading && <Loader/>}
-            <div className=' bg-gray-800 px-10 py-10 rounded-xl '>
+            <div className='transparent-blur-bg'>
                 <div className="">
                     <h1 className='text-center text-white text-xl mb-4 font-bold'>Login</h1>
                 </div>
