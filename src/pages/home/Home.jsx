@@ -8,6 +8,7 @@ import Testimonial from '../../components/testimonial/Testimonial'
 import Track from '../../components/track/track'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, deleteFromCart} from '../../redux/cartSlice'
+import Hero from '../../components/hero/hero'
 
 function Home() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const deleteCart = () => {
         <button className=' bg-gray-300 p-5' onClick={()=> deleteCart()}>del</button>
       </div>
       <HeroSection/>
+      {/* <Hero/> */}
       <Filter/>
       <ProductCard/>
       <Track/>

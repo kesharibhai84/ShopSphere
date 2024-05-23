@@ -18,7 +18,7 @@ import AddProduct from './pages/admin/pages/AddProduct';
 import UpdateProduct from './pages/admin/pages/UpdateProduct';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
-  
+  import { ProtectedRoutesAdmin } from './ProtectedRoutesAdmin';
 function App() {
   return (
     <MyState>
@@ -27,7 +27,11 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/order" element={<Order/>} />
         <Route path="/cart" element={<Cart/>} />
-        <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/dashboard" element={
+          <ProtectedRoutesAdmin>
+            <Dashboard/>
+          </ProtectedRoutesAdmin>
+        } />
         <Route path="/*" element={<NoPage/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
@@ -61,10 +65,11 @@ export const ProtectedRoutes = ({ children }) => {
 export const ProtectedRoutesForAdmin = ({children}) => {
   const admin = JSON.parse(localStorage.getItem('user'))
   console.log(admin.user.email)
-  if (admin.user.email === 'knupadhyay784@gmail.com') {
+  if (admin.user.email === 'vishalkeshari2004@gmail.com') {
     return children
   }
   else {
-    return <Navigate to='/login' />
+    return <Navigate to='/login' replace />
   }
+  
 }
