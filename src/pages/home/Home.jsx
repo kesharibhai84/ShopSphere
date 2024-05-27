@@ -11,24 +11,24 @@ import { addToCart, deleteFromCart} from '../../redux/cartSlice'
 import Hero from '../../components/hero/hero'
 
 function Home() {
-  const dispatch = useDispatch();
-const cartItem =useSelector((state)=>state.cart)
+//   const dispatch = useDispatch();
+// const cartItem =useSelector((state)=>state.cart)
 
-console.log(cartItem)
-const addCart =()=>{
-  dispatch(addToCart("shirt"));
-}
+// console.log(cartItem)
+// const addCart =()=>{
+//   dispatch(addToCart("shirt"));
+// }
 
-const deleteCart = () => {
-  dispatch(deleteFromCart("shirt"));
-}
+// const deleteCart = () => {
+//   dispatch(deleteFromCart("shirt"));
+// }
 
   return (
     <Layout>
-      <div className="flex gap-5 justify-center">
+      {/* <div className="flex gap-5 justify-center">
         <button className=' bg-gray-300 p-5' onClick={()=> addCart()}>add</button>
         <button className=' bg-gray-300 p-5' onClick={()=> deleteCart()}>del</button>
-      </div>
+      </div> */}
       <HeroSection/>
       {/* <Hero/> */}
       <Filter/>

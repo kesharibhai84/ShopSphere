@@ -19,6 +19,7 @@ import UpdateProduct from './pages/admin/pages/UpdateProduct';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { ProtectedRoutesAdmin } from './ProtectedRoutesAdmin';
+import Allproducts from './pages/allproducts/Allproducts';
 function App() {
   return (
     <MyState>
@@ -38,6 +39,8 @@ function App() {
         <Route path="/productInfo/:id" element={<ProductInfo/>} />
         <Route path="/addProduct" element={<AddProduct/>} />
         <Route path="/updateProduct/:id" element={<UpdateProduct/>} />
+        <Route path="/allproducts" element={<Allproducts/>} />
+        
       </Routes>
       <ToastContainer/>
     </Router>

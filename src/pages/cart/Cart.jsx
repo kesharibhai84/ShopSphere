@@ -29,7 +29,7 @@ function Cart() {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems])
 
-  const [totalAmout, setTotalAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     let temp = 0;
@@ -40,9 +40,9 @@ function Cart() {
     console.log(temp)
   }, [cartItems])
 
-  const shipping = parseInt(100);
-
-  const grandTotal = shipping + totalAmout;
+  // const shipping = parseInt(100);
+   const shipping = totalAmount > 300 ? 0 : 100;
+  const grandTotal = shipping + totalAmount;
   // console.log(grandTotal)
 
   /**========================================================================
@@ -167,7 +167,7 @@ function Cart() {
           <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3" style={{ backgroundColor: mode === 'dark' ? 'rgb(32 33 34)' : '', color: mode === 'dark' ? 'white' : '', }}>
             <div className="mb-2 flex justify-between">
               <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>Subtotal</p>
-              <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{totalAmout}</p>
+              <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{totalAmount}</p>
             </div>
             <div className="flex justify-between">
               <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>Shipping</p>
