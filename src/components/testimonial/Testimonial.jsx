@@ -32,10 +32,10 @@ function Testimonial() {
                         </div>
                         <div className="lg:w-1/3 lg:mb-0 p-4">
                             <div className="h-full text-center">
-                                <img alt="testimonial" className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://webknudocs.vercel.app/logo/react.png" />
+                                <img alt="testimonial" className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="gaura.jpg" />
                                 <p style={{color: mode === 'dark' ? 'white' : ''}} className="leading-relaxed">" Decent Experience, Room for Improvement" <hr /><hr />The website is well-organized, and I found what I needed without much hassle. However, I faced some issues during checkout with my payment not being processed initially. After a couple of tries, it finally went through. The product I ordered is good, but the packaging could have been better to prevent minor damage. Overall, it's an okay experience, but there's room for improvement.</p>
                                 <span className="inline-block h-1 w-10 rounded bg-pink-500 mt-6 mb-4" />
-                                <h2 style={{color: mode === 'dark' ? '#ff4162' : ''}} className="text-gray-900 font-medium title-font tracking-wider text-sm uppercase">Shubham</h2>
+                                <h2 style={{color: mode === 'dark' ? '#ff4162' : ''}} className="text-gray-900 font-medium title-font tracking-wider text-sm uppercase">Gaurav</h2>
                                 <p  style={{color: mode === 'dark' ? 'white' : ''}}className="text-gray-500">SDE</p>
                             </div>
                         </div>
