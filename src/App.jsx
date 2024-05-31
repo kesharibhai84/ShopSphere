@@ -20,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { ProtectedRoutesAdmin } from './ProtectedRoutesAdmin';
 import Allproducts from './pages/allproducts/Allproducts';
+import Marq from './components/marq/Marq';
 function App() {
   return (
     <MyState>
@@ -40,7 +41,7 @@ function App() {
         <Route path="/addProduct" element={<AddProduct/>} />
         <Route path="/updateProduct/:id" element={<UpdateProduct/>} />
         <Route path="/allproducts" element={<Allproducts/>} />
-        
+        <Route path="/marq" element={<Marq/>}/>
       </Routes>
       <ToastContainer/>
     </Router>
