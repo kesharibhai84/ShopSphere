@@ -21,6 +21,7 @@ import { ToastContainer, toast } from 'react-toastify';
   import { ProtectedRoutesAdmin } from './ProtectedRoutesAdmin';
 import Allproducts from './pages/allproducts/Allproducts';
 import Marq from './components/marq/Marq';
+import ForgotPassword from './pages/registration/ForgotPassword';
 function App() {
   return (
     <MyState>
@@ -42,6 +43,7 @@ function App() {
         <Route path="/updateProduct/:id" element={<UpdateProduct/>} />
         <Route path="/allproducts" element={<Allproducts/>} />
         <Route path="/marq" element={<Marq/>}/>
+        <Route path="/forgotpassword" element={<ForgotPassword/>}/>
       </Routes>
       <ToastContainer/>
     </Router>
