@@ -8,7 +8,8 @@ import Testimonial from '../../components/testimonial/Testimonial'
 import Track from '../../components/track/track'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, deleteFromCart} from '../../redux/cartSlice'
-import Hero from '../../components/hero/hero'
+import Hero from '../../components/herosection/hero'
+
 
 function Home() {
 //   const dispatch = useDispatch();

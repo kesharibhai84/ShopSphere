@@ -22,6 +22,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Allproducts from './pages/allproducts/Allproducts';
 import Marq from './components/marq/Marq';
 import ForgotPassword from './pages/registration/ForgotPassword';
+import Hero from './components/herosection/hero';
 function App() {
   return (
     <MyState>
@@ -44,6 +45,7 @@ function App() {
         <Route path="/allproducts" element={<Allproducts/>} />
         <Route path="/marq" element={<Marq/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
+        <Route path="/hero" element={<Hero/>}/>
       </Routes>
       <ToastContainer/>
     </Router>
