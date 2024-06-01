@@ -181,6 +181,11 @@ function MyState(props) {
         };
     }, []);
     useEffect(() => {
+        getOrderData();
+        getUserData();
+    }, []);
+
+    useEffect(() => {
         const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUserFromLocalStorage) {
             setCurrentUser(currentUserFromLocalStorage);

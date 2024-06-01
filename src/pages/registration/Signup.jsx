@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, fireDB } from '../../firebase/FirebaseConfig';
 import { Timestamp, addDoc, collection } from 'firebase/firestore';
 import Loader from '../../components/loader/loader';
+import { updateProfile } from 'firebase/auth';
 import './Signup.css';
 function Signup() {
     const [name, setName] = useState("");
@@ -15,34 +16,70 @@ function Signup() {
     const context = useContext(myContext);
     const { loading, setLoading } = context;
 
+    // const signup = async () => {
+    //     setLoading(true)
+    //     if (name === "" || email === "" || password === "") {
+    //         return toast.error("All fields are required")
+    //     }
+
+    //     try {
+    //         const users = await createUserWithEmailAndPassword(auth, email, password);
+            
+    //         // console.log(users)
+
+    //         const user = {
+    //             name: name,
+    //             uid: users.user.uid,
+    //             email: users.user.email,
+    //             time : Timestamp.now()
+    //         }
+    //         const userRef = collection(fireDB, "users")
+    //         await addDoc(userRef, user);
+    //         toast.success("Signup Succesfully")
+    //         setName("");
+    //         setEmail("");
+    //         setPassword("");
+    //         setLoading(false)
+            
+    //     } catch (error) {
+    //         console.log(error)
+    //         setLoading(false)
+    //     }
+    // }
     const signup = async () => {
-        setLoading(true)
+        setLoading(true);
         if (name === "" || email === "" || password === "") {
-            return toast.error("All fields are required")
+            setLoading(false);
+            return toast.error("All fields are required");
         }
-
+    
         try {
-            const users = await createUserWithEmailAndPassword(auth, email, password);
-
-            // console.log(users)
-
-            const user = {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            
+            // Set the displayName
+            await updateProfile(user, {
+                displayName: name
+            });
+    
+            const userDoc = {
                 name: name,
-                uid: users.user.uid,
-                email: users.user.email,
+                uid: user.uid,
+                email: user.email,
                 time : Timestamp.now()
-            }
-            const userRef = collection(fireDB, "users")
-            await addDoc(userRef, user);
-            toast.success("Signup Succesfully")
+            };
+    
+            const userRef = collection(fireDB, "users");
+            await addDoc(userRef, userDoc);
+            toast.success("Signup Successfully");
             setName("");
             setEmail("");
             setPassword("");
-            setLoading(false)
+            setLoading(false);
             
         } catch (error) {
-            console.log(error)
-            setLoading(false)
+            console.log(error);
+            setLoading(false);
         }
     }
     const pageStyle = {
