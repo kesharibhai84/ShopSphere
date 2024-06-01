@@ -62,50 +62,33 @@ function MyState(props) {
 
     const [product, setProduct] = useState([]);
 
-    // const getProductData = async () => {
-    //     setLoading(true)
-
-    //     try {
-    //         const q = query(
-    //             collection(fireDB, 'products'),
-    //             orderBy('time')
-    //         );
-
-    //         const data = onSnapshot(q, (QuerySnapshot) => {
-    //             let productArray = [];
-    //             QuerySnapshot.forEach((doc) => {
-    //                 productArray.push({ ...doc.data(), id: doc.id });
-    //             });
-    //             setProduct(productArray);
-    //             setLoading(false)
-    //         });
-
-    //         return () => data;
-
-    //     } catch (error) {
-    //         console.log(error)
-    //         setLoading(false)
-    //     }
-    // }
     const getProductData = async () => {
-        setLoading(true);
+        setLoading(true)
+
         try {
-            const q = query(collection(fireDB, 'products'), orderBy('time'));
+            const q = query(
+                collection(fireDB, 'products'),
+                orderBy('time')
+            );
+
             const data = onSnapshot(q, (QuerySnapshot) => {
                 let productArray = [];
                 QuerySnapshot.forEach((doc) => {
                     productArray.push({ ...doc.data(), id: doc.id });
                 });
-                setProducts(productArray);
-                setProductCount(productArray.length); // Update product count
+                setProduct(productArray);
+                setProductCount(productArray.length);
+                setLoading(false)
             });
+
             return () => data;
+
         } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
+            console.log(error)
+            setLoading(false)
         }
-    };
+    }
+    
     useEffect(() => {
         getProductData();
     }, []);
