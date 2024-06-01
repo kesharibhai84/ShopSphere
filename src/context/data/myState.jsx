@@ -6,7 +6,8 @@ import { fireDB, auth } from '../../firebase/FirebaseConfig'; // Ensure you have
 
 function MyState(props) {
     const [mode, setMode] = useState('light');
-
+    const [productCount, setProductCount] = useState(0);
+    const [userCount, setUserCount] = useState(0);
     const toggleMode = () => {
         if (mode === 'light') {
             setMode('dark');
@@ -61,32 +62,50 @@ function MyState(props) {
 
     const [product, setProduct] = useState([]);
 
+    // const getProductData = async () => {
+    //     setLoading(true)
+
+    //     try {
+    //         const q = query(
+    //             collection(fireDB, 'products'),
+    //             orderBy('time')
+    //         );
+
+    //         const data = onSnapshot(q, (QuerySnapshot) => {
+    //             let productArray = [];
+    //             QuerySnapshot.forEach((doc) => {
+    //                 productArray.push({ ...doc.data(), id: doc.id });
+    //             });
+    //             setProduct(productArray);
+    //             setLoading(false)
+    //         });
+
+    //         return () => data;
+
+    //     } catch (error) {
+    //         console.log(error)
+    //         setLoading(false)
+    //     }
+    // }
     const getProductData = async () => {
-        setLoading(true)
-
+        setLoading(true);
         try {
-            const q = query(
-                collection(fireDB, 'products'),
-                orderBy('time')
-            );
-
+            const q = query(collection(fireDB, 'products'), orderBy('time'));
             const data = onSnapshot(q, (QuerySnapshot) => {
                 let productArray = [];
                 QuerySnapshot.forEach((doc) => {
                     productArray.push({ ...doc.data(), id: doc.id });
                 });
-                setProduct(productArray);
-                setLoading(false)
+                setProducts(productArray);
+                setProductCount(productArray.length); // Update product count
             });
-
             return () => data;
-
         } catch (error) {
-            console.log(error)
-            setLoading(false)
+            console.error(error);
+        } finally {
+            setLoading(false);
         }
-    }
-
+    };
     useEffect(() => {
         getProductData();
     }, []);
@@ -153,24 +172,39 @@ function MyState(props) {
     const [user, setUser] = useState([]);
     const [currentUser, setCurrentUser] = useState(null); // New state for current user
 
+    // const getUserData = async () => {
+    //     setLoading(true)
+    //     try {
+    //         const result = await getDocs(collection(fireDB, "users"))
+    //         const usersArray = [];
+    //         result.forEach((doc) => {
+    //             usersArray.push(doc.data());
+    //             setLoading(false)
+    //         });
+    //         setUser(usersArray);
+    //         console.log(usersArray)
+    //         setLoading(false);
+    //     } catch (error) {
+    //         console.log(error)
+    //         setLoading(false)
+    //     }
+    // }
     const getUserData = async () => {
-        setLoading(true)
+        setLoading(true);
         try {
-            const result = await getDocs(collection(fireDB, "users"))
+            const result = await getDocs(collection(fireDB, "users"));
             const usersArray = [];
             result.forEach((doc) => {
                 usersArray.push(doc.data());
-                setLoading(false)
             });
             setUser(usersArray);
-            console.log(usersArray)
-            setLoading(false);
+            setUserCount(usersArray.length); // Update user count
         } catch (error) {
-            console.log(error)
-            setLoading(false)
+            console.error(error);
+        } finally {
+            setLoading(false);
         }
-    }
-
+    };
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             setCurrentUser(user);
@@ -202,7 +236,7 @@ function MyState(props) {
             products, setProducts, addProduct, product,
             edithandle, updateProduct, deleteProduct, order,
             user, currentUser, searchkey, setSearchkey, filterType, setFilterType,
-            filterPrice, setFilterPrice
+            filterPrice, setFilterPrice,userCount,productCount
         }}>
             {props.children}
         </MyContext.Provider>
