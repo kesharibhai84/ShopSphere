@@ -23,6 +23,7 @@ import Allproducts from './pages/allproducts/Allproducts';
 import Marq from './components/marq/Marq';
 import ForgotPassword from './pages/registration/ForgotPassword';
 import Hero from './components/herosection/hero';
+import UserDetails from './components/userdetails/UserDetails';
 function App() {
   return (
     <MyState>
@@ -46,6 +47,7 @@ function App() {
         <Route path="/marq" element={<Marq/>}/>
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
         <Route path="/hero" element={<Hero/>}/>
+        <Route path="/user-details" element={<UserDetails/>}/>
       </Routes>
       <ToastContainer/>
     </Router>

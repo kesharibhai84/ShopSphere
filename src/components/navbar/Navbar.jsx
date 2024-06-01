@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from 'react'
+import { Fragment, useContext, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import { BsFillCloudSunFill } from 'react-icons/bs'
@@ -22,6 +22,16 @@ export default function Navbar() {
   }
 
   const cartItems =useSelector((state)=> state.cart)
+
+  //user's data
+    const { currentUser } = context;
+    const [userName, setUserName] = useState('');
+
+    useEffect(() => {
+        if (currentUser) {
+            setUserName(currentUser.displayName || currentUser.email);
+        }
+    }, [currentUser]);
 
   return (
     <div className="bg-white sticky top-0 z-50  "  >
@@ -98,6 +108,10 @@ export default function Navbar() {
                         src="logos.png"
                         alt="Dan_Abromov" />                                        </Link>
                   </div>
+                  {user?<div className="flow-root">
+                  {userName ? `Hello, ${userName}` : 'Loading...'}
+                  </div>:""}
+
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6">
@@ -188,12 +202,15 @@ export default function Navbar() {
                   </a>
                 </div>
                 <div className="hidden lg:ml-8 lg:flex">
-                  <a href="#" className="flex items-center text-gray-700 ">
+                  {/* <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
                       src="logos.png"
                       alt="Dan_Abromov" />
-                  </a>
+                  </a> */}
+                   {user?<div className="flow-root">
+                  {userName ? `Hello, ${userName}` : 'Loading...'}
+                  </div>:""}
                 </div>
 
                 {/* Search */}

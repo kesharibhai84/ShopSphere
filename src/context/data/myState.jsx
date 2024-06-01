@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react'
 import MyContext from './myContext'
 import { Timestamp, addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
-import { fireDB } from '../../firebase/FirebaseConfig';
+import { fireDB, auth } from '../../firebase/FirebaseConfig'; // Ensure you have auth imported from Firebase config
 
-function myState(props) {
+function MyState(props) {
     const [mode, setMode] = useState('light');
 
     const toggleMode = () => {
         if (mode === 'light') {
             setMode('dark');
             document.body.style.backgroundColor = "rgb(17, 24, 39)"
-        }
-        else {
+        } else {
             setMode('light');
             document.body.style.backgroundColor = "white"
         }
@@ -58,14 +57,11 @@ function myState(props) {
             setLoading(false)
         }
         // setProducts("")
-
-
     }
 
     const [product, setProduct] = useState([]);
 
     const getProductData = async () => {
-
         setLoading(true)
 
         try {
@@ -89,7 +85,6 @@ function myState(props) {
             console.log(error)
             setLoading(false)
         }
-
     }
 
     useEffect(() => {
@@ -135,7 +130,6 @@ function myState(props) {
         }
     }
 
-
     const [order, setOrder] = useState([]);
 
     const getOrderData = async () => {
@@ -157,6 +151,7 @@ function myState(props) {
     }
 
     const [user, setUser] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null); // New state for current user
 
     const getUserData = async () => {
         setLoading(true)
@@ -177,8 +172,19 @@ function myState(props) {
     }
 
     useEffect(() => {
-        getOrderData();
-        getUserData();
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setCurrentUser(user);
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, []);
+    useEffect(() => {
+        const currentUserFromLocalStorage = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUserFromLocalStorage) {
+            setCurrentUser(currentUserFromLocalStorage);
+        }
     }, []);
 
     const [searchkey, setSearchkey] = useState('')
@@ -190,12 +196,12 @@ function myState(props) {
             mode, toggleMode, loading, setLoading,
             products, setProducts, addProduct, product,
             edithandle, updateProduct, deleteProduct, order,
-            user, searchkey, setSearchkey,filterType,setFilterType,
-            filterPrice,setFilterPrice
+            user, currentUser, searchkey, setSearchkey, filterType, setFilterType,
+            filterPrice, setFilterPrice
         }}>
             {props.children}
         </MyContext.Provider>
     )
 }
 
-export default myState
+export default MyState
