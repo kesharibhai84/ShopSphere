@@ -4,7 +4,7 @@ const Marq = ({ mode }) => {
   return (
     <div>
       <p className="flex h-10 items-center justify-center bg-pink-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8 marquee-container" style={{ backgroundColor: mode === 'dark' ? 'rgb(62 64 66)' : '', color: mode === 'dark' ? 'white' : '', }}>
-        <span className="marquee-text">Get free delivery on orders over ₹300</span>
+        <span className="marquee-text">Get free delivery on orders over ₹200</span>
       </p>
       <style jsx>{`
         @keyframes marquee {
