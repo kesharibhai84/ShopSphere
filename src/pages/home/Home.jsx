@@ -11,6 +11,7 @@ import { addToCart, deleteFromCart} from '../../redux/cartSlice'
 import Hero from '../../components/herosection/hero'
 
 
+
 function Home() {
 //   const dispatch = useDispatch();
 // const cartItem =useSelector((state)=>state.cart)
@@ -31,6 +32,7 @@ function Home() {
         <button className=' bg-gray-300 p-5' onClick={()=> deleteCart()}>del</button>
       </div> */}
       <HeroSection/>
+   
       {/* <Hero/> */}
       <Filter/>
       <ProductCard/>
