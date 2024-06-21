@@ -9,6 +9,8 @@ import Track from '../../components/track/track'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, deleteFromCart} from '../../redux/cartSlice'
 import Hero from '../../components/herosection/hero'
+import ImageSlider from '../../components/herosection/ImageSlider'
+import Slideshow from '../../components/slidershow/slideShow'
 
 
 
@@ -32,7 +34,8 @@ function Home() {
         <button className=' bg-gray-300 p-5' onClick={()=> deleteCart()}>del</button>
       </div> */}
       <HeroSection/>
-   
+      {/* <Slideshow/> */}
+   {/* <ImageSlider/> */}
       {/* <Hero/> */}
       <Filter/>
       <ProductCard/>

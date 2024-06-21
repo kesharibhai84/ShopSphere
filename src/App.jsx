@@ -20,7 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { ProtectedRoutesAdmin } from './ProtectedRoutesAdmin';
 import Allproducts from './pages/allproducts/Allproducts';
-import Marq from './components/marq/Marq';
+// import Marq from './components/marq/Marq';
 import ForgotPassword from './pages/registration/ForgotPassword';
 import UserDetails from './components/userdetails/UserDetails';
 
@@ -44,7 +44,7 @@ function App() {
         <Route path="/addProduct" element={<AddProduct/>} />
         <Route path="/updateProduct/:id" element={<UpdateProduct/>} />
         <Route path="/allproducts" element={<Allproducts/>} />
-        <Route path="/marq" element={<Marq/>}/>
+        {/* <Route path="/marq" element={<Marq/>}/> */}
         <Route path="/forgotpassword" element={<ForgotPassword/>}/>
         <Route path="/user-details" element={<UserDetails/>}/>
       </Routes>
